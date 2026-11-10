@@ -1,0 +1,24 @@
+<body>
+  <header></header>
+  <main>
+    <div>
+      <h1>Maintain this guide</h1>
+      <p>Keep training content close to the product authors actually use. A small, accurate guide is more valuable than a large collection of outdated instructions.</p>
+      <h2>Know where things live</h2>
+      <ul><li><code>/index</code> is the overview and searchable topic directory.</li><li><code>/docs/enablement</code> holds lessons and the block reference.</li><li><code>/docs/guide-nav</code> controls the left-hand topic navigation and lesson order.</li><li><code>/docs/nav</code> and <code>/docs/footer</code> are the guide's header and footer documents.</li></ul>
+      <p>These are recommended destinations supplied with this implementation. Content only appears on delivery hosts after it has been imported and previewed or published.</p>
+      <h2>Add or update a lesson</h2>
+      <ol><li>Copy an existing lesson and retain its Metadata table, including the guide template, navigation, and footer rows.</li><li>Give it a unique path, title, description, and one Heading 1.</li><li>Start with the task and prerequisites. Write short steps, a way to verify the result, and a link to the relevant official documentation.</li><li>Clearly label site-specific conventions. State when a feature depends on configuration or permissions.</li><li>Add the lesson to <code>/docs/guide-nav</code> and add or update its row in the overview's Guide Topics block.</li><li>Preview the lesson and both updated indexes. Check every new link and the narrow-screen layout before publishing.</li></ol>
+      <h2>Keep the topic directory useful</h2>
+      <p>Each Guide Topics row has a category cell and a content cell containing a Heading 3 link plus a short description. Search checks those authored category names, titles, and descriptions; it does not search the full text of every lesson.</p>
+      <p>Keep link text descriptive and descriptions distinct. Reuse an existing category when possible. No manually maintained search index or spreadsheet is required.</p>
+      <h2>Update the block reference with code changes</h2>
+      <p>When a developer adds or changes a block, update its content model, supported variants, example, and limitations in the block reference. Confirm the code is available on the target branch before asking authors to use it. Configuring the Experience Workspace library is a separate administrator task.</p>
+      <h2>Review for accuracy</h2>
+      <p>Recheck a lesson when the workspace UI, site behavior, permissions, or publishing process changes. Have an author complete its exercise, verify the official source links, and remove claims that no longer match the project. Initial copy was prepared with AI assistance and should be validated by your site owner before rollout.</p>
+      <p>Official reference: <a href="https://www.aem.live/docs/ew/authoring">Experience Workspace authoring</a>.</p>
+    </div>
+    <div><div class="metadata"><div><div>Title</div><div>Maintain this guide | Author guide</div></div><div><div>Description</div><div>Keep training lessons, topic navigation, and block documentation accurate.</div></div><div><div>Template</div><div>guide</div></div><div><div>Nav</div><div>/docs/nav</div></div><div><div>Footer</div><div>/docs/footer</div></div></div></div>
+  </main>
+  <footer></footer>
+</body>

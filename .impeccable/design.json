@@ -1,0 +1,134 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-11-10T20:59:07.157Z",
+  "title": "Design System: Experience Workspace author guide",
+  "extensions": {
+    "colorMeta": {
+      "brand-primary": { "role": "primary", "displayName": "Spectrum blue fill" },
+      "brand-on-primary": { "role": "neutral", "displayName": "On-primary white" },
+      "brand-surface": { "role": "neutral", "displayName": "Page surface" },
+      "brand-surface-alt": { "role": "neutral", "displayName": "Alternate surface" },
+      "brand-accent": { "role": "secondary", "displayName": "Adobe red text mark" },
+      "brand-ink": { "role": "neutral", "displayName": "Reading ink" },
+      "brand-muted": { "role": "neutral", "displayName": "Muted ink" },
+      "brand-link": { "role": "primary", "displayName": "Spectrum blue link" },
+      "brand-border": { "role": "neutral", "displayName": "Divider" },
+      "dark-primary": { "role": "primary", "displayName": "Dark-mode blue fill" },
+      "dark-surface": { "role": "neutral", "displayName": "Dark page surface" },
+      "dark-surface-alt": { "role": "neutral", "displayName": "Dark alternate surface" },
+      "dark-ink": { "role": "neutral", "displayName": "Dark reading ink" },
+      "dark-muted": { "role": "neutral", "displayName": "Dark muted ink" },
+      "dark-link": { "role": "primary", "displayName": "Dark-mode blue link" },
+      "dark-border": { "role": "neutral", "displayName": "Dark divider" }
+    },
+    "typographyMeta": {
+      "headline": { "displayName": "Page headline", "purpose": "Balanced H1, maximum measure 20ch." },
+      "title": { "displayName": "Section title", "purpose": "Lesson and index H2." },
+      "subheading": { "displayName": "Subheading", "purpose": "Main-content H3; learning-path headings use 19px." },
+      "intro": { "displayName": "Introduction", "purpose": "Muted paragraph directly after H1." },
+      "body": { "displayName": "Reading body", "purpose": "Lesson paragraphs and lists, maximum measure 72ch." },
+      "label": { "displayName": "Search label", "purpose": "Visible search-field label." },
+      "navigation": { "displayName": "Rail navigation", "purpose": "Sidebar links; current-page weight becomes 700." },
+      "caption": { "displayName": "Supporting text", "purpose": "Breadcrumb, contents, pager labels, and footer." }
+    },
+    "shadows": [],
+    "motion": [
+      { "name": "guide-color-transition", "value": "background-color 140ms ease-out, color 140ms ease-out", "purpose": "Links and buttons only, under prefers-reduced-motion: no-preference." }
+    ],
+    "breakpoints": [
+      { "name": "topic-columns", "value": "700px" },
+      { "name": "desktop-navigation", "value": "900px" },
+      { "name": "contents-rail", "value": "1200px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary action link",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Blue guide action; minimum height 44px.",
+      "html": "<a class=\"ds-primary\" href=\"#first-page\">Create your first page</a>",
+      "css": ".ds-primary{display:inline-flex;align-items:center;justify-content:center;min-height:44px;box-sizing:border-box;max-width:100%;padding:10px 18px;border:2px solid var(--brand-primary,#3b63fb);border-radius:var(--brand-radius,8px);background:var(--brand-primary,#3b63fb);color:var(--brand-on-primary,#fff);font-family:var(--brand-font,\"Adobe Clean\",\"Source Sans 3\",\"Source Sans Pro\",-apple-system,system-ui,sans-serif);font-size:15px;font-weight:650;line-height:1.25;text-decoration:none;text-underline-offset:3px;white-space:normal;overflow-wrap:break-word}.ds-primary:hover{text-decoration:underline}.ds-primary:focus-visible{outline:2px solid var(--brand-link,#3b63fb);outline-offset:4px}@media(prefers-reduced-motion:no-preference){.ds-primary{transition:background-color 140ms ease-out,color 140ms ease-out}}"
+    },
+    {
+      "name": "Secondary action link",
+      "kind": "button",
+      "refersTo": "button-secondary",
+      "description": "Page-colored action with muted border and ink text.",
+      "html": "<a class=\"ds-secondary\" href=\"#workspace\">Open your workspace</a>",
+      "css": ".ds-secondary{display:inline-flex;align-items:center;justify-content:center;min-height:44px;box-sizing:border-box;max-width:100%;padding:10px 18px;border:2px solid var(--brand-muted,#505050);border-radius:var(--brand-radius,8px);background:var(--brand-surface,#fff);color:var(--brand-ink,#292929);font-family:var(--brand-font,\"Adobe Clean\",\"Source Sans 3\",\"Source Sans Pro\",-apple-system,system-ui,sans-serif);font-size:15px;font-weight:650;line-height:1.25;text-decoration:none;text-underline-offset:3px;white-space:normal;overflow-wrap:break-word}.ds-secondary:hover{text-decoration:underline}.ds-secondary:focus-visible{outline:2px solid var(--brand-link,#3b63fb);outline-offset:4px}@media(prefers-reduced-motion:no-preference){.ds-secondary{transition:background-color 140ms ease-out,color 140ms ease-out}}"
+    },
+    {
+      "name": "Clear search",
+      "kind": "button",
+      "refersTo": "button-clear",
+      "description": "Shown for a nonempty query; the application resets results and restores input focus.",
+      "html": "<button class=\"ds-clear\" type=\"button\">Clear search</button>",
+      "css": ".ds-clear{min-height:48px;box-sizing:border-box;border:1px solid currentColor;border-radius:8px;padding:8px 16px;background:var(--brand-surface,#fff);color:var(--brand-link,#3b63fb);font-family:var(--brand-font,\"Adobe Clean\",\"Source Sans 3\",\"Source Sans Pro\",-apple-system,system-ui,sans-serif);font-size:16px;font-weight:400;line-height:1.7;cursor:pointer}.ds-clear:hover{background:var(--brand-surface-alt,#f8f8f8)}.ds-clear:focus-visible{outline:2px solid var(--brand-link,#3b63fb);outline-offset:4px}@media(prefers-reduced-motion:no-preference){.ds-clear{transition:background-color 140ms ease-out,color 140ms ease-out}}"
+    },
+    {
+      "name": "Topic search field",
+      "kind": "input",
+      "refersTo": "input-search",
+      "description": "Visible label and neutral field; application code supplies live filtering.",
+      "html": "<label class=\"ds-search-label\">Search topics<input class=\"ds-search-input\" type=\"search\" placeholder=\"Try &quot;publish&quot;, &quot;images&quot;, or &quot;blocks&quot;\"></label>",
+      "css": ".ds-search-label{display:grid;gap:8px;color:var(--brand-ink,#292929);font-family:var(--brand-font,\"Adobe Clean\",\"Source Sans 3\",\"Source Sans Pro\",-apple-system,system-ui,sans-serif);font-size:15px;font-weight:600;line-height:1.7}.ds-search-input{box-sizing:border-box;width:100%;min-height:48px;border:1px solid var(--brand-muted,#505050);border-radius:8px;padding:10px 14px;background:var(--brand-surface,#fff);color:var(--brand-ink,#292929);font:inherit;font-weight:400;caret-color:var(--brand-link,#3b63fb)}.ds-search-input::placeholder{color:var(--brand-muted,#505050);opacity:1}.ds-search-input:focus-visible{outline:2px solid var(--brand-link,#3b63fb);outline-offset:4px}"
+    },
+    {
+      "name": "Guide navigation",
+      "kind": "nav",
+      "refersTo": "navigation-item",
+      "description": "Muted rail links; alternate-surface hover and bold blue current-page state.",
+      "html": "<nav class=\"ds-nav\" aria-label=\"Author guide\"><a class=\"ds-nav-link\" href=\"#overview\">Overview</a><a class=\"ds-nav-link\" href=\"#publishing\" aria-current=\"page\">Publishing checklist</a></nav>",
+      "css": ".ds-nav{font-family:var(--brand-font,\"Adobe Clean\",\"Source Sans 3\",\"Source Sans Pro\",-apple-system,system-ui,sans-serif);font-size:14px}.ds-nav-link{display:block;margin:2px 0;border-radius:var(--brand-radius,8px);padding:8px 12px;color:var(--brand-muted,#505050);line-height:1.5;text-decoration:none;text-underline-offset:3px;overflow-wrap:break-word}.ds-nav-link:hover{background:var(--brand-surface-alt,#f8f8f8);color:var(--brand-ink,#292929);text-decoration:underline}.ds-nav-link[aria-current=page]{background:var(--brand-surface-alt,#f8f8f8);color:var(--brand-link,#3b63fb);font-weight:700}.ds-nav-link:focus-visible{outline:2px solid var(--brand-link,#3b63fb);outline-offset:4px}@media(prefers-reduced-motion:no-preference){.ds-nav-link{transition:background-color 140ms ease-out,color 140ms ease-out}}"
+    },
+    {
+      "name": "Guide card",
+      "kind": "card",
+      "refersTo": "card",
+      "description": "Flat bordered alternate-surface container with 16px body inset.",
+      "html": "<div class=\"ds-card\"><div class=\"ds-card-body\"><p class=\"ds-card-text\">A card can group related content.</p></div></div>",
+      "css": ".ds-card{border:1px solid var(--brand-border,#dadada);border-radius:var(--brand-radius,8px);background:var(--brand-surface-alt,#f8f8f8);color:var(--brand-ink,#292929);font-family:var(--brand-font,\"Adobe Clean\",\"Source Sans 3\",\"Source Sans Pro\",-apple-system,system-ui,sans-serif);font-size:16px;line-height:1.7}.ds-card-body{margin:16px}.ds-card-text{max-width:72ch;margin:12px 0}"
+    },
+    {
+      "name": "Topic directory group",
+      "kind": "custom",
+      "description": "Divided category row and linked topic descriptions; not a raised card.",
+      "html": "<section class=\"ds-topics\"><h3 class=\"ds-topics-category\">Review and publish</h3><ul class=\"ds-topics-list\"><li class=\"ds-topics-item\"><h4 class=\"ds-topics-heading\"><a class=\"ds-topics-link\" href=\"#publishing\">Preview and publish safely</a></h4><p class=\"ds-topics-description\">A practical preflight checklist and the difference between draft, preview, and live.</p></li></ul></section>",
+      "css": ".ds-topics{display:grid;gap:8px 32px;padding:24px 0;border-top:1px solid var(--brand-border,#dadada);color:var(--brand-ink,#292929);font-family:var(--brand-font,\"Adobe Clean\",\"Source Sans 3\",\"Source Sans Pro\",-apple-system,system-ui,sans-serif);line-height:1.7}.ds-topics-category{margin:0;font-size:17px;font-weight:600;letter-spacing:-0.01em;line-height:1.25}.ds-topics-list{display:grid;gap:24px;margin:0;padding:0;list-style:none}.ds-topics-item{margin:8px 0}.ds-topics-heading{margin:0 0 4px;font-size:18px;font-weight:600;line-height:1.25}.ds-topics-link{color:var(--brand-link,#3b63fb);text-decoration:none;text-underline-offset:3px;overflow-wrap:break-word}.ds-topics-link:hover{text-decoration:underline}.ds-topics-link:focus-visible{outline:2px solid var(--brand-link,#3b63fb);outline-offset:4px}.ds-topics-description{margin:0;color:var(--brand-muted,#505050);font-size:15px;line-height:1.6}@media(width>=700px){.ds-topics{grid-template-columns:160px 1fr}.ds-topics-list{grid-template-columns:repeat(2,minmax(0,1fr));gap:24px 32px}}@media(prefers-reduced-motion:no-preference){.ds-topics-link{transition:background-color 140ms ease-out,color 140ms ease-out}}"
+    },
+    {
+      "name": "Empty search recovery",
+      "kind": "custom",
+      "refersTo": "search-empty",
+      "description": "Neutral explanatory text; paired with announced count and clear-search action in the application.",
+      "html": "<p class=\"ds-empty\">No matching topics. Try a broader term or clear your search to see all topics.</p>",
+      "css": ".ds-empty{max-width:72ch;margin:12px 0;padding:24px;border-radius:8px;background:var(--brand-surface-alt,#f8f8f8);color:var(--brand-ink,#292929);font-family:var(--brand-font,\"Adobe Clean\",\"Source Sans 3\",\"Source Sans Pro\",-apple-system,system-ui,sans-serif);font-size:16px;font-weight:400;line-height:1.7}"
+    }
+  ],
+  "narrative": {
+    "northStar": "Adobe documentation",
+    "overview": "Plain, readable documentation for new and occasional authors. Neutral flat surfaces, Spectrum blue controls, left-hand guide navigation, and readable lessons implement the confirmed direction. This is a project training resource, not official Adobe product documentation.\n\nThis system applies only to pages opting into `Template: guide`. Original non-guide boilerplate is outside its scope. The shipped implementation, not a fictional brand or a new aesthetic choice, is the source of the tokens.",
+    "keyCharacteristics": [
+      "Plain reading typography.",
+      "Neutral flat surfaces and fine dividers.",
+      "Spectrum blue links and controls.",
+      "Responsive topic navigation and live topic filtering."
+    ],
+    "rules": [
+      { "name": "The Blue Roles Rule", "body": "In dark mode, blue text uses the link role; primary blue remains a fill.", "section": "colors" },
+      { "name": "The Flat Surfaces Rule", "body": "Separate guide regions with neutral tones and dividers, not shadows or gradients.", "section": "elevation" }
+    ],
+    "dos": [
+      "**Do** apply this system only to opt-in guide pages.",
+      "**Do** preserve readable measures, labeled search, current-page semantics, and visible keyboard focus.",
+      "**Do** use the observed dark-mode roles rather than carrying light-mode blue text into dark mode.",
+      "**Do** retain the training-resource distinction from official Adobe documentation."
+    ],
+    "donts": [
+      "**Don't** introduce shadows, gradients, ornamental illustration, or fictional interface screenshots.",
+      "**Don't** replace the styled Adobe text with an invented logo or use red as a control fill.",
+      "**Don't** turn the reading font stack into a system-display identity."
+    ]
+  }
+}

@@ -10,6 +10,7 @@ import {
   loadSections,
   loadCSS,
   buildBlock,
+  getMetadata,
 } from './aem.js';
 
 if (window.trustedTypes && window.trustedTypes.createPolicy) {
@@ -165,6 +166,11 @@ async function loadEager(doc) {
   const main = doc.querySelector('main');
   if (main) {
     decorateMain(main);
+    if (getMetadata('template') === 'guide') {
+      await loadCSS(`${window.hlx.codeBasePath}/styles/guide.css`);
+      const { default: decorateGuide } = await import('./guide.js');
+      await decorateGuide(main);
+    }
     document.body.classList.add('appear');
     await loadSection(main.querySelector('.section'), waitForFirstImage);
   }

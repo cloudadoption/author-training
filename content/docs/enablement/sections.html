@@ -1,0 +1,31 @@
+<body>
+  <header></header>
+  <main>
+    <div>
+      <h1>Organize sections and metadata</h1>
+      <p>Sections group related content. Section metadata controls a group, while page metadata describes the whole page. They are different tables with different jobs.</p>
+      <h2>Group content into sections</h2>
+      <p>Use the editor's section controls to split a page at a meaningful change in topic or layout. In the earlier document editor, a horizontal rule separates sections. Within a section, combine headings, paragraphs, and blocks as needed.</p>
+      <p>Use the outline to inspect your page structure. Adding a section does not replace the need for a meaningful heading.</p>
+      <h2>Set section metadata</h2>
+      <p>Add a table headed <strong>Section Metadata</strong> in the section you want to affect. Below the header, use two cells per row: a property name and its value.</p>
+      <pre><code>Section Metadata
+Style | light</code></pre>
+      <p>This repository supports <code>light</code> and <code>highlight</code> section styles. They apply a light background and section padding. Arbitrary names, spacing values, or colors do not create new styles. The guide template has its own reading layout; check the rendered result before using section treatments in lessons.</p>
+      <h2>Set page metadata</h2>
+      <p>Use one table headed <strong>Metadata</strong>, normally at the end of the document. Use two cells per row for the key and value.</p>
+      <pre><code>Metadata
+Title       | A clear page title
+Description | A concise summary of this page</code></pre>
+      <p>The guide pages also use <code>Template | guide</code>, <code>Nav | /docs/nav</code>, and <code>Footer | /docs/footer</code>. These select this guide's layout and shared navigation rather than changing the whole site's defaults. Keep these rows when copying a lesson.</p>
+      <h2>Understand shared content</h2>
+      <p>Navigation and footer content are separate documents. Changing a shared document can affect many pages. Preview and review those documents as well as the page you are editing, then publish dependencies before pages that need them.</p>
+      <p>The guide's left-hand navigation is maintained separately at <code>/docs/guide-nav</code>. A new lesson must also be linked from the overview's topic directory; it is not discovered automatically.</p>
+      <h2>Try it</h2>
+      <p>Give your practice page a useful title and description. Preview it and check the browser tab title. Confirm that page metadata is not showing as a visible table.</p>
+      <p>Reference: <a href="https://www.aem.live/developer/markup-sections-blocks">Markup, sections, and blocks</a>. Supported styles come from this repository's CSS.</p>
+    </div>
+    <div><div class="metadata"><div><div>Title</div><div>Sections and metadata | Author guide</div></div><div><div>Description</div><div>Organize content and distinguish section settings from page metadata.</div></div><div><div>Template</div><div>guide</div></div><div><div>Nav</div><div>/docs/nav</div></div><div><div>Footer</div><div>/docs/footer</div></div></div></div>
+  </main>
+  <footer></footer>
+</body>

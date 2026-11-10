@@ -1,0 +1,38 @@
+<body>
+  <header></header>
+  <main>
+    <div>
+      <h1>Explore the block reference</h1>
+      <p>These are the blocks implemented in this repository. The examples below are rendered by the same code used on your pages. Library availability in Experience Workspace is configured separately.</p>
+      <h2>Cards</h2>
+      <p>Use a table headed <strong>Cards</strong>. Each following row is one card. Put a heading, description, and link together in a cell. An optional image can be in a separate cell. Use consistent cells across rows and meaningful alt text for images.</p>
+      <div class="cards">
+        <div><div><h3>Plan the page</h3><p>Start with one clear purpose and the content your reader needs.</p><p><a href="/docs/enablement/first-page">Create a first draft</a></p></div></div>
+        <div><div><h3>Check the result</h3><p>Review the preview before you make the page public.</p><p><a href="/docs/enablement/publishing">Review the publishing steps</a></p></div></div>
+      </div>
+      <h2>Columns</h2>
+      <p>Use a table headed <strong>Columns</strong>. Put related content into the cells of a row: two cells for two columns, for example. Columns stack on narrow screens. Keep reading order sensible without relying on side-by-side presentation.</p>
+      <div class="columns">
+        <div><div><h3>Author the content</h3><p>Focus on meaning, structure, and useful links.</p></div><div><h3>Review the experience</h3><p>Check the preview on both wider and narrower screens.</p></div></div>
+      </div>
+      <h2>Hero</h2>
+      <p>Use a table headed <strong>Hero</strong> for an introductory area containing a heading and supporting text. The existing stylesheet supports a background picture; provide enough contrast and do not put essential information only in the image. Keep one Heading 1 per page.</p>
+      <h2>Fragment</h2>
+      <p>Use a table headed <strong>Fragment</strong> containing a link to an existing shared page. The shared content must be previewed and published separately. This site also automatically expands links whose paths contain <code>/fragments/</code>; use those links deliberately, because they do more than navigate.</p>
+      <p>Do not copy a fragment's content into every page to make an update. Change the shared source, then verify the affected pages. No sample fragment is assumed to exist in this starter content.</p>
+      <h2>Widget</h2>
+      <p>The repository includes a Widget block and automatically recognizes links containing <code>/widgets/</code>. Widget targets require their own implementation. Use only a widget path approved by your developer; this guide does not assume any widget endpoint has been configured.</p>
+      <h2>Guide Topics</h2>
+      <p>Use a table headed <strong>Guide Topics</strong>. Each row contains two cells: a category and the topic content. The content cell has a Heading 3 with a link and a short description. The overview turns these rows into a searchable directory.</p>
+      <pre><code>Guide Topics
+Getting started | Heading 3 link: Create your first page
+                | Description: Make a draft and preview it.</code></pre>
+      <p>Search matches the authored category, title, and description, not the full lesson body. Rows without a link remain readable but are not given a fabricated destination. Missing category names are grouped under Topics.</p>
+      <h2>Shared header and footer</h2>
+      <p>Header and Footer blocks are loaded by the page framework, not normally inserted into a document. Guide pages select their shared source documents using the Nav and Footer metadata rows. See <a href="/docs/enablement/sections">Sections and metadata</a>.</p>
+      <p>Any variant not documented here should be treated as unsupported until a developer confirms it.</p>
+    </div>
+    <div><div class="metadata"><div><div>Title</div><div>Block reference | Author guide</div></div><div><div>Description</div><div>Authoring models and working examples for this site's supported blocks.</div></div><div><div>Template</div><div>guide</div></div><div><div>Nav</div><div>/docs/nav</div></div><div><div>Footer</div><div>/docs/footer</div></div></div></div>
+  </main>
+  <footer></footer>
+</body>
