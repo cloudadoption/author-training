@@ -190,7 +190,10 @@ async function loadEager(doc) {
  * @param {Element} doc The container element
  */
 async function loadLazy(doc) {
-  loadHeader(doc.querySelector('body > header'));
+  const guide = getMetadata('template') === 'guide' ? await import('./guide.js') : null;
+  loadHeader(doc.querySelector('body > header')).then(() => {
+    guide?.customizeWorkspaceLinks(doc.querySelector('body > header'));
+  });
 
   const main = doc.querySelector('main');
   await loadSections(main);
@@ -199,7 +202,10 @@ async function loadLazy(doc) {
   const element = hash ? doc.getElementById(hash.substring(1)) : false;
   if (hash && element) element.scrollIntoView();
 
-  loadFooter(doc.querySelector('body > footer'));
+  loadFooter(doc.querySelector('body > footer')).then(() => {
+    guide?.customizeWorkspaceLinks(doc.querySelector('body > footer'));
+  });
+  guide?.customizeWorkspaceLinks(main);
 
   loadCSS(`${window.hlx.codeBasePath}/styles/lazy-styles.css`);
   loadFonts();

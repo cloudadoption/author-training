@@ -1,5 +1,30 @@
+import { getMetadata } from './aem.js';
+
 function normalizePath(path) {
   return path.replace(/\/index(?:\.html)?$/, '/').replace(/\.html$/, '').replace(/\/$/, '') || '/';
+}
+
+export function customizeWorkspaceLinks(container) {
+  let workspace;
+  try {
+    workspace = new URL(new URLSearchParams(window.location.search).get('workspace'));
+  } catch {
+    return;
+  }
+  if (workspace.protocol !== 'https:' || workspace.username || workspace.password) return;
+
+  container.querySelectorAll('a[href]').forEach((link) => {
+    if (link.href === workspace.href) return;
+    if (link.href === 'https://da.live/#/cloudadoption/author-training') {
+      link.href = workspace.href;
+    } else if (link.origin === window.location.origin && !link.getAttribute('href').startsWith('#')) {
+      const path = normalizePath(link.pathname);
+      if (path !== '/' && !/^\/docs\/(?:enablement|administering)(?:\/|$)/.test(path)) return;
+      const url = new URL(link.href);
+      url.searchParams.set('workspace', workspace.href);
+      link.href = `${url.pathname}${url.search}${url.hash}`;
+    }
+  });
 }
 
 function createLink(href, text) {
@@ -62,6 +87,9 @@ function addLessonNavigation(main, links, currentIndex) {
  * The authored navigation document remains the source of lesson order.
  */
 export default async function decorateGuide(main) {
+  const guideHome = getMetadata('guide-home') || '/';
+  const guideTitle = getMetadata('guide-title') || 'Author guide';
+  const guideNav = getMetadata('guide-nav') || '/docs/guide-nav';
   main.id = 'main-content';
   main.tabIndex = -1;
   const skip = createLink('#main-content', 'Skip to content');
@@ -82,18 +110,18 @@ export default async function decorateGuide(main) {
   const summary = document.createElement('summary');
   summary.textContent = 'Explore the guide';
   const navigation = document.createElement('nav');
-  navigation.setAttribute('aria-label', 'Author guide');
+  navigation.setAttribute('aria-label', guideTitle);
   disclosure.append(summary, navigation);
   sidebar.append(disclosure);
   shell.prepend(sidebar);
   addContents(main, shell);
 
   const currentPath = normalizePath(window.location.pathname);
-  if (currentPath !== '/') {
+  if (currentPath !== normalizePath(guideHome)) {
     const breadcrumb = document.createElement('nav');
     breadcrumb.className = 'guide-breadcrumb';
     breadcrumb.setAttribute('aria-label', 'Breadcrumb');
-    breadcrumb.append(createLink('/', 'Author guide'));
+    breadcrumb.append(createLink(guideHome, guideTitle));
     const current = document.createElement('span');
     current.textContent = main.querySelector('h1')?.textContent || 'Lesson';
     breadcrumb.append(current);
@@ -101,7 +129,7 @@ export default async function decorateGuide(main) {
   }
 
   try {
-    const response = await fetch('/docs/guide-nav.plain.html', { signal: AbortSignal.timeout(6000) });
+    const response = await fetch(`${guideNav}.plain.html`, { signal: AbortSignal.timeout(6000) });
     if (!response.ok) throw new Error('Guide navigation is unavailable');
     const source = new DOMParser().parseFromString(await response.text(), 'text/html');
     source.querySelectorAll('h2, h3, ul').forEach((element) => navigation.append(element));
@@ -112,9 +140,10 @@ export default async function decorateGuide(main) {
     if (currentIndex >= 0) links[currentIndex].setAttribute('aria-current', 'page');
     addLessonNavigation(main, links, currentIndex);
   } catch {
-    navigation.append(createLink('/', 'Back to the author guide'));
+    navigation.append(createLink(guideHome, `Back to ${guideTitle}`));
     const message = document.createElement('p');
     message.textContent = 'Topic navigation could not load. You can still read this page.';
     navigation.append(message);
   }
+  customizeWorkspaceLinks(document);
 }

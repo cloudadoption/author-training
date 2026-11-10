@@ -2,11 +2,36 @@
 
 Adobe-styled, task-based training for new and occasional authors. Includes a
 searchable topic directory, responsive guide navigation, on-page contents,
-previous/next lessons, ten lessons, and a block reference.
+previous/next lessons, eleven lessons, and a block reference.
+The separate administration guide adds a searchable overview and nine guides
+covering configuration, permissions, libraries, structured content, assistant
+setup, publishing governance, localization/MSM, media integrations, and migration.
 
 - Preview: https://main--author-training--cloudadoption.aem.page/
 - Live: https://main--author-training--cloudadoption.aem.live/
 - Content: https://da.live/#/cloudadoption/author-training
+- Administration: https://main--author-training--cloudadoption.aem.live/docs/administering
+
+## Customize the workspace destination
+
+Add a URL-encoded `workspace` query parameter to any guide URL to change both
+the header's **Open workspace** link and the overview's **Open your workspace**
+button:
+
+```text
+https://main--author-training--cloudadoption.aem.live/?workspace=https%3A%2F%2Fda.live%2F%23%2Facme%2Fmy-site
+```
+
+This example opens `https://da.live/#/acme/my-site`. Encode the whole destination
+(for example, with `encodeURIComponent`) so its `#`, `?`, and `&` remain part of
+the workspace URL. Use only a trusted absolute HTTPS URL without embedded
+credentials. Empty or invalid values leave the authored destination unchanged.
+
+The parameter stays on internal guide links, including shared navigation and
+previous/next lessons, but is not added to external documentation links.
+Nothing is saved in browser storage: remove the parameter to return to the
+default workspace. This changes link destinations only; it does not change the
+guide's content, configure a workspace, or grant access.
 
 ## Run locally
 
@@ -26,7 +51,7 @@ actual DA round-tripping must be checked after import.
 
 ## Import the content into DA
 
-The 15 HTML files in `content/` are **DA source documents**, not static website
+The 27 HTML files in `content/` are **DA source documents**, not static website
 pages. They include the required body, header, main, and footer wrappers,
 canonical block divs, and page Metadata. Keep their structure when importing.
 Do not upload `.preview/`, which contains generated development pages.
@@ -40,6 +65,9 @@ Map paths by removing `content/`:
 | `content/docs/footer.html` | `/docs/footer.html` |
 | `content/docs/guide-nav.html` | `/docs/guide-nav.html` |
 | `content/docs/enablement/*.html` | `/docs/enablement/*.html` |
+| `content/docs/admin-nav.html` | `/docs/admin-nav.html` |
+| `content/docs/administering.html` | `/docs/administering.html` |
+| `content/docs/administering/*.html` | `/docs/administering/*.html` |
 
 Use your approved DA import workflow, or the Source API with a valid Adobe IMS
 token and write permission. **Importing an existing path overwrites its content.**
@@ -66,8 +94,9 @@ the configured AEM integration, but does not import these HTML documents into DA
 ## Preview and launch
 
 1. Import all documents. Open them in DA and confirm their tables and content.
-1. Preview `/docs/nav`, `/docs/footer`, and `/docs/guide-nav`, then the lessons and
-   `/index`. Preview is a separate action; source upload alone is not enough.
+1. Preview `/docs/nav`, `/docs/footer`, `/docs/guide-nav`, and `/docs/admin-nav`,
+   then the lessons, `/docs/administering`, and `/index`. Preview is a separate
+   action; source upload alone is not enough.
 1. Check the overview search, current lesson, on-page links, mobile menus, page
    titles, button examples, and block reference on the actual preview host.
 1. Have the site owner validate the lessons against your workspace, permissions,
@@ -98,6 +127,20 @@ pages retain the existing template. `/docs/guide-nav` provides the sidebar and
 lesson order. Heading 2 elements provide on-page contents automatically. If the
 shared guide navigation is unavailable, the lesson remains readable.
 
+Administration pages use three additional Metadata rows to keep their
+navigation, breadcrumbs, and lesson order separate from the author guide:
+
+| Metadata key | Administration value |
+| --- | --- |
+| Guide Nav | /docs/admin-nav |
+| Guide Home | /docs/administering |
+| Guide Title | Administering |
+
+Omitting these rows retains the author guide defaults. Add administration
+lessons to `/docs/admin-nav` and the administration overview's Guide Topics block.
+The content summarizes and links to Adobe's administration references; it does
+not enable integrations, modify permissions, or apply configuration changes.
+
 ### Guide Topics
 
 | Guide Topics | |
@@ -114,6 +157,8 @@ Add a new lesson to both `/docs/guide-nav` and the overview's Guide Topics block
 The [maintenance lesson](content/docs/enablement/maintaining.html) explains the
 editorial workflow. The [block reference](content/docs/enablement/block-library.html)
 documents Cards, Columns, Hero, Fragment, Widget, and Guide Topics.
+The [assistant lesson](content/docs/enablement/assistant.html) covers prompts,
+attachments, commands, optional connected workflows, and review safeguards.
 
 ## Validate
 

@@ -1,0 +1,27 @@
+<body>
+  <header></header>
+  <main>
+    <div>
+      <h1>Plan localization and multi-site</h1>
+      <p>Decide how languages, regions, and sites relate before automating content movement. Translation, rollout, and Multi-Site Manager solve different problems.</p>
+      <h2>Choose a localization strategy</h2>
+      <ul><li><strong>Language-based:</strong> one folder per language when regional differences are limited.</li><li><strong>Region-based:</strong> group languages beneath regional folders when region-specific content is central.</li><li><strong>Locale-based:</strong> target language-region pairs directly, with more content copies to govern.</li><li><strong>Hybrid:</strong> translate into languages, then roll content out to regional or locale destinations.</li></ul>
+      <p>Translate changes language. Copy moves content without translation. Rollout distributes content downstream and may merge into an existing destination. Transcreation adapts intent and tone rather than translating literally. Assign a source of truth and a local reviewer for each target.</p>
+      <h2>Configure the Translate app deliberately</h2>
+      <p>The Translate app uses Google Translate by default without additional setup. Supported alternative connectors include Lionbridge, Smartling, and Trados; they need provider setup and credentials.</p>
+      <ol><li>Create or edit the site's hidden <code>.da/translate</code> sheet.</li><li>Use its config tab for service and conflict behavior, and its languages tab for source, target locations, and allowed actions.</li><li>Define do-not-translate rules for technical values and other content that must survive unchanged.</li><li>Choose conflict handling deliberately for sync, translation, copying, and rollout. Merge aims to preserve local edits; overwrite replaces them.</li><li>Test one source document and one destination before running a large project.</li></ol>
+      <p>Review automatic preview and publish completion settings before enabling them. Store provider secrets in an appropriately restricted credential sheet, not in this guide or source control. Use the official samples as a starting point, not a ready-made production policy.</p>
+      <h2>Know what Multi-Site Manager inherits</h2>
+      <p>MSM shares content across base and satellite sites. A satellite page with no local copy resolves from its base at preview and publish time. Creating a local copy detaches that page. MSM does not translate inherited content.</p>
+      <p>Setup requires the appropriate Edge Delivery content provider, organization-level base/satellite relationships on an msm tab, and the desired Prepare plugin or app. Coordinate the delivery source change with your developer; changing only the menu does not establish inheritance.</p>
+      <h2>Choose merge, replace, or reconnect safely</h2>
+      <ul><li><strong>Merge:</strong> applies base changes while attempting to preserve satellite edits. Structural differences can still cause unexpected results.</li><li><strong>Replace:</strong> discards the satellite's local content in favor of the base. Back up the current document before using it.</li><li><strong>Reconnect:</strong> deletes the local copy and resumes inheritance. Confirm that losing the local version is intended.</li></ul>
+      <p>Check all target sites and descendants in a bulk confirmation. A base-language update can reintroduce untranslated content into a localized satellite. Review affected pages after the operation and before publication.</p>
+      <h2>Run a small end-to-end trial</h2>
+      <ol><li>Translate or copy a practice page with a known local edit, a technical link, and protected terminology.</li><li>Run the intended rollout or MSM operation on one destination.</li><li>Inspect the resulting document, metadata, links, media, and language.</li><li>Resolve conflicts and get a local review.</li><li>Verify preview, then publish only through the agreed workflow.</li></ol>
+      <p>Sources: <a href="https://www.aem.live/docs/ew/administering/translation">Translation</a>, <a href="https://www.aem.live/docs/ew/administering/translation-strategy">Localization strategies</a>, <a href="https://www.aem.live/docs/ew/administering/set-up-translation">Translation setup</a>, <a href="https://www.aem.live/docs/ew/administering/translation-config">Configuration options</a>, <a href="https://www.aem.live/docs/ew/administering/translation-config-samples">Configuration samples</a>, <a href="https://www.aem.live/docs/ew/administering/translation-service-connection">Translation connectors</a>, and <a href="https://www.aem.live/docs/ew/administering/multi-site-manager">Multi-Site Manager</a>.</p>
+    </div>
+    <div><div class="metadata"><div><div>Title</div><div>Localization and multi-site | Administration guide</div></div><div><div>Description</div><div>Choose translation and rollout strategies, configure services, and manage multi-site inheritance without losing local edits.</div></div><div><div>Template</div><div>guide</div></div><div><div>Nav</div><div>/docs/nav</div></div><div><div>Footer</div><div>/docs/footer</div></div><div><div>Guide Nav</div><div>/docs/admin-nav</div></div><div><div>Guide Home</div><div>/docs/administering</div></div><div><div>Guide Title</div><div>Administering</div></div></div></div>
+  </main>
+  <footer></footer>
+</body>

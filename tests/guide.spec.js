@@ -16,7 +16,7 @@ test('topics filter across titles, descriptions and categories, with recovery', 
   await openGuide(page);
   const search = page.getByRole('searchbox', { name: 'Search topics' });
   const topics = page.locator('.guide-topics-group li:visible');
-  await expect(topics).toHaveCount(11);
+  await expect(topics).toHaveCount(12);
   await search.fill('  GETTING   first  ');
   await expect(topics).toHaveCount(1);
   await expect(topics).toContainText('Create your first page');
@@ -26,12 +26,110 @@ test('topics filter across titles, descriptions and categories, with recovery', 
   await expect(page.getByText('No matching topics.', { exact: false })).toBeVisible();
   await page.getByRole('button', { name: 'Clear search' }).click();
   await expect(search).toBeFocused();
-  await expect(topics).toHaveCount(11);
+  await expect(topics).toHaveCount(12);
   await search.fill('   ');
-  await expect(topics).toHaveCount(11);
+  await expect(topics).toHaveCount(12);
   await expect(page.locator('a.button.primary', { hasText: 'Create your first page' })).toBeVisible();
   await expect(page).toHaveTitle('Experience Workspace author guide');
   expect(errors).toEqual([]);
+});
+
+test('workspace override reaches both buttons and survives guide navigation', async ({ page }) => {
+  const workspace = 'https://da.live/?view=recent&sort=name#/example/training';
+  const query = new URLSearchParams({ workspace }).toString();
+  await openGuide(page, `/?${query}`);
+  const headerWorkspace = page.getByRole('link', { name: 'Open workspace', exact: true });
+  await expect(headerWorkspace).toHaveAttribute('href', workspace);
+  await expect(page.getByRole('link', { name: 'Open your workspace', exact: true }))
+    .toHaveAttribute('href', workspace);
+  await expect(page.getByRole('link', { name: 'Platform docs', exact: true }))
+    .toHaveAttribute('href', 'https://www.aem.live/docs/ew/authoring');
+  await Promise.all([
+    '.guide-sidebar a[href*="/docs/enablement/assistant"]',
+    'header a[href*="/docs/enablement/block-library"]',
+    'footer a[href*="/docs/enablement/maintaining"]',
+  ].map((selector) => expect(page.locator(selector)).toHaveAttribute('href', /workspace=/)));
+  await page.locator('a.button.primary', { hasText: 'Create your first page' }).click();
+  await expect(page).toHaveURL(new URL(`/docs/enablement/first-page?${query}`, page.url()).href);
+  await expect(headerWorkspace).toHaveAttribute('href', workspace);
+  await page.getByRole('navigation', { name: 'Lessons', exact: true })
+    .getByRole('link', { name: /Next/ }).click();
+  await expect(page).toHaveURL(/\/formatting\?workspace=/);
+  expect(new URL(page.url()).searchParams.get('workspace')).toBe(workspace);
+  await page.setViewportSize({ width: 1440, height: 1000 });
+  const contents = page.getByRole('navigation', { name: 'On this page', exact: true });
+  const headingLink = contents.getByRole('link', { name: 'Turn a standalone link into a button' });
+  await expect(headingLink).toHaveAttribute('href', /^#/);
+  await headingLink.click();
+  expect(new URL(page.url()).searchParams.get('workspace')).toBe(workspace);
+  await page.getByRole('navigation', { name: 'Breadcrumb', exact: true })
+    .getByRole('link', { name: 'Author guide', exact: true }).click();
+  await expect(page.getByRole('link', { name: 'Open your workspace', exact: true }))
+    .toHaveAttribute('href', workspace);
+  await openGuide(page);
+  await expect(headerWorkspace).toHaveAttribute('href', 'https://da.live/#/cloudadoption/author-training');
+  await expect(page.getByRole('link', { name: 'Open your workspace', exact: true }))
+    .toHaveAttribute('href', 'https://da.live/#/cloudadoption/author-training');
+});
+
+test('workspace header override does not wait for a slow footer', async ({ page }) => {
+  const workspace = 'https://da.live/#/example/training';
+  let releaseFooter;
+  const footerReady = new Promise((resolve) => { releaseFooter = resolve; });
+  await page.route('**/docs/footer.plain.html', async (route) => {
+    await footerReady;
+    await route.continue();
+  });
+  try {
+    await page.goto(`/?${new URLSearchParams({ workspace })}`);
+    await expect(page.getByRole('link', { name: 'Open workspace', exact: true }))
+      .toHaveAttribute('href', workspace);
+  } finally {
+    releaseFooter();
+    await page.unrouteAll({ behavior: 'wait' });
+  }
+});
+
+[
+  '', 'not-a-url', '/another-workspace', '//da.live/#/example/site',
+  'http://da.live/#/example/site',
+  // eslint-disable-next-line no-script-url
+  'javascript:alert(1)',
+  'data:text/html,test', 'https://author@example.com/',
+].forEach((workspace) => {
+  test(`invalid workspace override "${workspace}" retains authored links`, async ({ page }) => {
+    await openGuide(page, `/?${new URLSearchParams({ workspace })}`);
+    await expect(page.getByRole('link', { name: 'Open workspace', exact: true }))
+      .toHaveAttribute('href', 'https://da.live/#/cloudadoption/author-training');
+    await expect(page.getByRole('link', { name: 'Open your workspace', exact: true }))
+      .toHaveAttribute('href', 'https://da.live/#/cloudadoption/author-training');
+    await expect(page.locator('.guide-sidebar a').first()).toHaveAttribute('href', '/');
+  });
+});
+
+test('administration has independent search, breadcrumbs and lesson order', async ({ page }) => {
+  const workspace = 'https://da.live/#/example/admin-training';
+  const query = new URLSearchParams({ workspace }).toString();
+  await openGuide(page, `/docs/administering?${query}`);
+  const navigation = page.getByRole('navigation', { name: 'Administering', exact: true });
+  await expect(navigation.locator('[aria-current="page"]')).toHaveText('Overview');
+  await expect(page.getByRole('navigation', { name: 'Breadcrumb', exact: true })).toHaveCount(0);
+  const search = page.getByRole('searchbox', { name: 'Search topics' });
+  await expect(page.locator('.guide-topics-group li:visible')).toHaveCount(9);
+  await search.fill('permissions');
+  await page.locator('.guide-topics-group').getByRole('link', { name: 'Manage permissions and access' }).click();
+  await expect(page.getByRole('heading', { level: 1 })).toHaveText('Manage permissions and access');
+  await expect(navigation.locator('[aria-current="page"]')).toHaveText('Permissions and access');
+  await expect(page.getByRole('link', { name: 'Open workspace', exact: true }))
+    .toHaveAttribute('href', workspace);
+  const lessons = page.getByRole('navigation', { name: 'Lessons', exact: true });
+  await expect(lessons.getByRole('link', { name: /Previous/ })).toHaveAttribute('href', /\/administering\/configs\?workspace=/);
+  await lessons.getByRole('link', { name: /Next/ }).click();
+  await expect(page).toHaveURL(/\/administering\/library\?workspace=/);
+  await page.getByRole('navigation', { name: 'Breadcrumb', exact: true })
+    .getByRole('link', { name: 'Administering', exact: true }).click();
+  await expect(page.getByRole('heading', { level: 1 })).toHaveText('Administer Experience Workspace');
+  expect(new URL(page.url()).searchParams.get('workspace')).toBe(workspace);
 });
 
 test('lesson wayfinding follows authored order and heading anchors', async ({ page }) => {
@@ -143,20 +241,25 @@ test('every supplied page and internal destination resolves with valid metadata'
 test('guide template is opt-in and does not change ordinary pages', async ({ page, request }) => {
   const response = await request.get('/docs/enablement/first-page');
   const html = (await response.text()).replace('<meta name="template" content="guide">', '');
-  await page.route('**/ordinary-page', (route) => route.fulfill({
+  await page.route('**/ordinary-page?*', (route) => route.fulfill({
     contentType: 'text/html',
     body: html,
   }));
-  await openGuide(page, '/ordinary-page');
+  await openGuide(page, '/ordinary-page?workspace=https%3A%2F%2Fda.live%2F%23%2Fexample%2Fsite');
   await expect(page.locator('.guide-shell')).toHaveCount(0);
   await expect(page.locator('body')).not.toHaveClass(/guide/);
   await expect(page.getByRole('heading', { level: 1 })).toBeVisible();
+  await expect(page.getByRole('link', { name: 'Open workspace', exact: true }))
+    .toHaveAttribute('href', 'https://da.live/#/cloudadoption/author-training');
 });
 
 const pages = [
   ['overview', '/'],
   ['lesson', '/docs/enablement/publishing'],
   ['reference', '/docs/enablement/block-library'],
+  ['assistant', '/docs/enablement/assistant'],
+  ['administration', '/docs/administering'],
+  ['admin-lesson', '/docs/administering/permissions'],
 ];
 [375, 768, 1440].forEach((width) => {
   pages.forEach(([name, url]) => {

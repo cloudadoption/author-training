@@ -1,0 +1,26 @@
+<body>
+  <header></header>
+  <main>
+    <div>
+      <h1>Manage permissions and access</h1>
+      <p>Give people the access their role needs, then test what they can actually do. Source editing, configuration changes, previewing, publishing, and viewing delivered content are separate concerns.</p>
+      <h2>Separate workspace and delivery permissions</h2>
+      <ul><li><strong>Workspace permissions:</strong> govern source documents, folders, resources, and configuration through Adobe Identity Management Services (IMS).</li><li><strong>Edge Delivery permissions:</strong> govern preview, publish, and access to delivered content. Manage author roles with the <a href="https://tools.aem.live/tools/user-admin/index.html">AEM User Admin tool</a> and the delivery configuration tools.</li></ul>
+      <p>Workspace write access does not automatically grant publish access. Protecting source content does not automatically protect an <code>aem.page</code> preview or a live URL. Verify both systems when content must be restricted.</p>
+      <h2>Use the permissions view</h2>
+      <ol><li>Open <strong>Org Settings</strong> or <strong>Site Settings</strong> in the content browser and select <strong>Permissions</strong>.</li><li>Check the site switcher and filter. A site view can show permissions inherited from its organization.</li><li>Review configuration, content, and folder permissions separately.</li><li>Add the approved identity under the appropriate Read or Write group, or add a folder rule for a limited path.</li><li>Verify the saved result before moving to another rule. Removing an entry with its X control saves automatically.</li></ol>
+      <p>The permissions view and the organization's permissions sheet edit the same data. The last save wins: coordinate with other administrators rather than editing both interfaces at once. Change inherited rules at their organization source.</p>
+      <h2>Understand actions, identities, and paths</h2>
+      <ul><li><strong>Read</strong> allows viewing. <strong>Write</strong> includes reading, creating, editing, and deleting. It is not a harmless edit-only permission.</li><li>Rules can name IMS organizations, IMS groups, or individual identities. Prefer managed groups where practical and confirm the user's selected IMS organization.</li><li><code>CONFIG</code> governs organization configuration access; a site-specific <code>/SITE/CONFIG</code> rule can govern its configuration. Keep a working administrator's access.</li><li><code>/SITE/folder/**</code> matches descendants but not the folder itself. <code>/SITE/folder/+**</code> also includes that folder.</li><li>Effective actions combine matches across the user's identities and groups. An empty action in one matching group does not necessarily remove a grant from another.</li></ul>
+      <p>Authors need appropriate configuration-read access to use the block library; they do not need configuration-write access for that task. Avoid granting broad write access to solve a library visibility problem.</p>
+      <h2>Test the effective result</h2>
+      <ol><li>Use a representative non-admin account to browse the intended folder and open a document.</li><li>Verify expected read, edit, and delete behavior on an isolated practice document.</li><li>Check configuration access separately from source access.</li><li>Test preview and publish with the intended Edge Delivery roles, not just the workspace rules.</li><li>If group membership changed, sign out and back in to refresh it, then retest.</li></ol>
+      <p>A 404 can mean missing content or insufficient access. Check path rules, folder access, and the selected IMS organization before creating duplicate content. Denied documents may still have names visible in a parent list; a preview URL is not a secrecy mechanism.</p>
+      <h2>If an administrator is locked out</h2>
+      <p>Stop changing rules and contact your Adobe support channel with the organization, site, and last known change. Do not widen access indiscriminately or put private configuration details into a public issue.</p>
+      <p>Sources: <a href="https://www.aem.live/docs/ew/administering/permissions">Permissions and security</a>, <a href="https://www.aem.live/docs/ew/administering/permissions-view">Permissions view</a>, and <a href="https://www.aem.live/docs/ew/administering/access-control">Access control reference</a>.</p>
+    </div>
+    <div><div class="metadata"><div><div>Title</div><div>Permissions and access | Administration guide</div></div><div><div>Description</div><div>Manage source and configuration permissions, distinguish delivery roles, and verify effective access safely.</div></div><div><div>Template</div><div>guide</div></div><div><div>Nav</div><div>/docs/nav</div></div><div><div>Footer</div><div>/docs/footer</div></div><div><div>Guide Nav</div><div>/docs/admin-nav</div></div><div><div>Guide Home</div><div>/docs/administering</div></div><div><div>Guide Title</div><div>Administering</div></div></div></div>
+  </main>
+  <footer></footer>
+</body>

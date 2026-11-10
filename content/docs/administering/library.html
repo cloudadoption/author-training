@@ -1,0 +1,26 @@
+<body>
+  <header></header>
+  <main>
+    <div>
+      <h1>Build libraries and templates</h1>
+      <p>A library gives authors a curated set of reusable content patterns. Its block documents, templates, and icon entries must match the code and content models your site actually supports.</p>
+      <h2>Prepare reusable documents</h2>
+      <ol><li>Inventory the deployed blocks with your developer. Start with the site's <a href="/docs/enablement/block-library">block reference</a>, not a block name copied from another site.</li><li>Create one block document per block type, typically under a library/blocks folder. Use a table with the block name in its first row and valid content rows below.</li><li>Add meaningful sample content and descriptions so authors can choose the right pattern.</li><li>Create template documents, typically under library/templates, with the complete starting structure: sections, required blocks, section metadata, and page metadata.</li><li>Test inserting each example into a practice page before listing it for authors.</li></ol>
+      <h2>Create the library sheets</h2>
+      <ul><li><strong>Blocks:</strong> the blocks sheet uses <code>name</code> and <code>path</code> columns to point to the source block documents.</li><li><strong>Templates:</strong> the templates sheet uses <code>key</code> and <code>value</code> to name and locate each template document.</li><li><strong>Icons:</strong> list the supported icon tokens, labels, and icon resource links using Adobe's library format.</li><li><strong>Placeholders:</strong> include your project's placeholder sheet when the site uses that feature.</li></ul>
+      <p>Use the documented content.da.live document URLs for the library entries and confirm authors can read them. In the site configuration, add a <strong>library</strong> tab that references the relevant sheets. Use the official reference for the exact columns; blocks and templates do not use identical sheet formats.</p>
+      <h2>Distinguish visual and content variants</h2>
+      <p>A visual variant is encoded in the block table heading, such as a variant name in parentheses, and becomes a CSS class. A content variant is distinguished by a document heading before the table and does not add a styling class. Neither creates missing JavaScript or CSS: the deployed implementation must support the result.</p>
+      <p>Where a copied pattern must include surrounding content, the library supports container start and end marker blocks. Use these deliberately and test the full inserted structure; do not add them to ordinary content unless needed.</p>
+      <h2>Offer supported metadata options</h2>
+      <p>Library options can provide fields and allowed values for page and section metadata. Match each option's key to its target block, and offer only values that the site's code recognizes. Labels can be friendly without changing the saved value.</p>
+      <p>The Page tools panel uses the configured metadata options when present. Without them, Title and Description are available as text fields. Check the options sheet when an expected field or choice is missing.</p>
+      <h2>Validate as an author</h2>
+      <ol><li>Confirm the author can read the relevant site configuration and library sources.</li><li>Open a practice document in Content mode and insert each block or template.</li><li>Check rows, cells, sections, placeholder text, and required metadata.</li><li>Preview the document at narrow and wide screen sizes.</li><li>Remove unsupported examples and update the reference when code or models change.</li></ol>
+      <p>This training site supplies example content and block code; it does not automatically register a workspace library.</p>
+      <p>Sources: <a href="https://www.aem.live/docs/ew/administering/set-up-library">Set up library</a> and <a href="https://www.aem.live/docs/ew/administering/focal-point">Enabling focal point</a>.</p>
+    </div>
+    <div><div class="metadata"><div><div>Title</div><div>Libraries and templates | Administration guide</div></div><div><div>Description</div><div>Create reusable block and template documents, organize library sheets, and test the authoring experience.</div></div><div><div>Template</div><div>guide</div></div><div><div>Nav</div><div>/docs/nav</div></div><div><div>Footer</div><div>/docs/footer</div></div><div><div>Guide Nav</div><div>/docs/admin-nav</div></div><div><div>Guide Home</div><div>/docs/administering</div></div><div><div>Guide Title</div><div>Administering</div></div></div></div>
+  </main>
+  <footer></footer>
+</body>

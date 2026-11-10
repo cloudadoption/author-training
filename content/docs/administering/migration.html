@@ -1,0 +1,27 @@
+<body>
+  <header></header>
+  <main>
+    <div>
+      <h1>Migrate and recover content</h1>
+      <p>Treat imports and restores as content changes that need scope, backups, QA, and an owner. Importing a rendered page is not the same as recovering every source detail or historical version.</p>
+      <h2>Inventory before importing</h2>
+      <ul><li>List the source pages, sheets, fragments, media, and redirects, plus the content that is intentionally excluded.</li><li>Confirm permission to copy the source material and write to the destination organization and site.</li><li>Record current destination content and configuration before any overwrite.</li><li>Choose a practice site or drafts destination and define how links and media should be handled.</li><li>Agree on a content freeze or a later delta import so edits made during migration are not lost.</li></ul>
+      <h2>Run a limited import</h2>
+      <ol><li>Open the <a href="https://da.live/apps/import">Import app</a>.</li><li>Choose a public query index or a list of public source URLs.</li><li>Review linked-content behavior and the production-domain setting.</li><li>Check the destination organization, site, and practice path. Importing can overwrite existing content.</li><li>Import a small representative set and review success, redirect, error, and remaining counts.</li></ol>
+      <p>Do not bypass protection by exposing private source content just to make an import work. Ask Adobe or your developer about an authorized approach for protected sources.</p>
+      <h2>Restore from a preview or live site</h2>
+      <p>When source content is missing but rendered preview or live pages remain, use an authorized AEM status job to obtain the intended resource list, then import those URLs into a safe destination.</p>
+      <p>Choose preview or live deliberately: they can contain different versions. Have a developer retrieve and filter the job results without sharing admin tokens. Redirects, media, and sheets need separate attention; do not assume each returned resource is an importable page.</p>
+      <h2>Validate more than the page count</h2>
+      <ol><li>Inspect headings, lists, links, block tables, sections, and metadata in the imported source.</li><li>Preview representative pages and compare them with the original at multiple screen sizes.</li><li>Check media, fragments, forms, search or index consumers, and redirects.</li><li>Verify permissions, titles, canonical URLs, crawl rules, and sitemap coverage with the responsible teams.</li><li>Resolve new migration defects separately from issues already present on the source site.</li></ol>
+      <h2>Plan an upgrade and cutover</h2>
+      <p>For a SharePoint- or Google Drive-based site moving to Experience Workspace, plan a parallel project, representative smoke tests, full content QA, SEO checks, a final delta import, and an explicit rollback decision.</p>
+      <p>Coordinate a content-source switch or a CDN-origin switch with your developer and operations team. Manage this repository's delivery configuration through the current tools at tools.aem.live; do not add retired configuration files to follow historical examples. A source change can affect more than one code branch, so verify its scope before applying it.</p>
+      <h2>Keep editor transitions deliberate</h2>
+      <p>Adobe recommends Experience Workspace for new projects. Existing Universal Editor projects do not need an immediate change, and their instrumentation and extensions need a compatibility review before a transition. Follow Adobe's current setup guide rather than treating an editor-path change as a complete migration.</p>
+      <p>Sources: <a href="https://www.aem.live/docs/ew/administering/import">Import projects</a>, <a href="https://www.aem.live/docs/ew/administering/restore-from-aem">Restore from AEM</a>, <a href="https://www.aem.live/docs/ew/administering/upgrade-site">Upgrading</a>, and <a href="https://www.aem.live/docs/ew/administering/set-up-universal-editor">Universal Editor setup</a>.</p>
+    </div>
+    <div><div class="metadata"><div><div>Title</div><div>Migration and recovery | Administration guide</div></div><div><div>Description</div><div>Inventory, import, restore, validate, and cut over Experience Workspace content with backups and a rollback plan.</div></div><div><div>Template</div><div>guide</div></div><div><div>Nav</div><div>/docs/nav</div></div><div><div>Footer</div><div>/docs/footer</div></div><div><div>Guide Nav</div><div>/docs/admin-nav</div></div><div><div>Guide Home</div><div>/docs/administering</div></div><div><div>Guide Title</div><div>Administering</div></div></div></div>
+  </main>
+  <footer></footer>
+</body>

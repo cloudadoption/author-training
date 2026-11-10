@@ -9,19 +9,21 @@ web
 ## Users
 
 New and occasional content authors learning to create, edit, preview, review,
-and publish pages with Experience Workspace.
+and publish pages with Experience Workspace, plus site administrators responsible
+for configuration, access, authoring setup, governance, and integrations.
 
 ## Product Purpose
 
 Provide task-based training and site-specific reference material, so authors
-can complete the edit–preview–publish workflow confidently.
+can complete the edit–preview–publish workflow confidently and administrators
+can plan safe workspace changes.
 
 ## Operating Context
 
 The existing Edge Delivery Services repository serves code. DA at
 https://da.live/#/cloudadoption/author-training holds separately published content.
-This implementation provides import-ready content; uploading and publishing are
-not authorized.
+Code ships from main. Content is uploaded and published separately under the
+site owner's authorization; training does not apply workspace settings.
 
 ## Capabilities and Constraints
 

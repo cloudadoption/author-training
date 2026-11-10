@@ -1,0 +1,25 @@
+<body>
+  <header></header>
+  <main>
+    <div>
+      <h1>Enable assistant workflows</h1>
+      <p>Give authors useful, approved assistant capabilities without confusing a prompt with permission to act. Decide which workflows your site needs before registering connectors or adding skills.</p>
+      <h2>Distinguish the moving parts</h2>
+      <ul><li><strong>Prompts:</strong> reusable starting requests that authors can adapt in chat.</li><li><strong>Commands:</strong> available predefined actions selected from the plus menu or slash menu.</li><li><strong>Connectors and tools:</strong> integrations that expose the operations the assistant can call.</li><li><strong>Skills:</strong> instructions that guide how the assistant uses those tools for a task.</li></ul>
+      <p>Making a prompt available does not enable its underlying integration. A skill does not grant broader identity or configuration permissions. Start with the <a href="/docs/enablement/assistant">author's assistant-panel lesson</a> to understand the interface you are supporting.</p>
+      <h2>Check availability and governance</h2>
+      <ol><li>Confirm the assistant is enabled for the organization and site. If its panel and show control are absent, check the administrator settings rather than asking authors to work around them.</li><li>Agree on approved data sources, attachment rules, and which actions require review.</li><li>Choose a limited practice site and representative author and approver roles.</li><li>Document which capabilities are enabled so training prompts do not promise unavailable features.</li></ol>
+      <h2>Register AEM agentic plugins when needed</h2>
+      <p>The Adobe-hosted AEM agentic plugins connector supports workflows including publish requests, scheduling, and permissions. Each feature needs its site skill as well as the connector; some features also need separate onboarding.</p>
+      <ol><li>Confirm configuration-write access and complete the feature's prerequisites. Request Publish, for example, needs customer onboarding and workflow configuration.</li><li>Open the site's Skills Editor at <code>https://da.live/apps/skills#/ORG/SITE</code>.</li><li>On the MCPs tab, register the documented <code>aem-agentic-plugins</code> connector using the current endpoint in Adobe's reference.</li><li>On the Skills tab, add only the skills your site will support, and disable unnecessary tools where appropriate.</li><li>Test read-only requests first, then a clearly scoped write on non-production content.</li></ol>
+      <h2>Verify identity and confirmations</h2>
+      <p>The connected services receive the signed-in user's identity and authorize each operation. The assistant does not become an administrator simply because a connector is registered.</p>
+      <p>For AEM agentic plugin writes, expect a summary and an explicit confirmation for each action. Reading a schedule or listing requests does not need the same write confirmation. Check that the summary names the right page, scope, recipients, or scheduled time before approving.</p>
+      <h2>Roll out with practical guidance</h2>
+      <ul><li>Give authors examples that match the enabled workflows and explain the expected outcome.</li><li>Teach the difference between a proposal in chat, a changed draft, a submitted request, and a live publication.</li><li>Review failed calls and authorization errors without sharing tokens or private configuration in chat.</li><li>Re-test after changing skills, connectors, or permissions. Do not use blanket approval as a shortcut.</li></ul>
+      <p>Sources: <a href="https://www.aem.live/docs/ew/authoring/assistant">Assistant panel</a>, <a href="https://www.aem.live/docs/ew/administering/agentic-plugins">AEM agentic plugins</a>, and <a href="https://www.aem.live/docs/ew/administering/request-publish-skill">Request Publish skill reference</a>.</p>
+    </div>
+    <div><div class="metadata"><div><div>Title</div><div>Assistant workflows | Administration guide</div></div><div><div>Description</div><div>Plan prompts, skills, connectors, permissions, and confirmations for approved Experience Workspace assistant workflows.</div></div><div><div>Template</div><div>guide</div></div><div><div>Nav</div><div>/docs/nav</div></div><div><div>Footer</div><div>/docs/footer</div></div><div><div>Guide Nav</div><div>/docs/admin-nav</div></div><div><div>Guide Home</div><div>/docs/administering</div></div><div><div>Guide Title</div><div>Administering</div></div></div></div>
+  </main>
+  <footer></footer>
+</body>

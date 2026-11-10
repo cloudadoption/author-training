@@ -1,0 +1,25 @@
+<body>
+  <header></header>
+  <main>
+    <div>
+      <h1>Set up structured content</h1>
+      <p>Use structured content when authors need a consistent form and a developer needs predictable JSON, such as a product record or an offer. This is different from editing the block tables of a normal page.</p>
+      <h2>Agree on a model and delivery contract</h2>
+      <p>Define the fields, labels, required values, validation, and consumers before creating a schema. Include examples with optional fields missing. Agree with the developer on how preview and live JSON will be consumed and how protected content will be authenticated.</p>
+      <p>Experience Workspace supports a subset of JSON Schema 2020-12, not every JSON Schema feature. Read the linked schema specification before using advanced constructs.</p>
+      <h2>Enable the editor for a dedicated folder</h2>
+      <ol><li>Create a meaningful folder for the records, such as a products folder in a practice site.</li><li>Confirm configuration-write access and author permissions for that location.</li><li>In the organization configuration, add an <code>editor.path</code> entry mapping the full organization/site/folder path to the structured editor at <code>https://da.live/form#</code>.</li><li>Keep the mapping narrowly scoped so normal pages continue to use their existing editor.</li></ol>
+      <h2>Create and validate a schema</h2>
+      <ol><li>Open the <a href="https://da.live/apps/schema">Schema Editor</a> and load your organization and site.</li><li>Create a schema or choose an existing one to edit.</li><li>Give every node an explicit type and title. Use supported constraints and closed value lists where appropriate.</li><li>Validate the schema and save only after the editor accepts it.</li><li>Create a test document in the mapped folder, select the schema, and fill in the generated form.</li></ol>
+      <p>Schemas are managed through the Schema Editor even though they are stored under the site's hidden structured-content schema area. The keys <code>metadata</code> and <code>section-metadata</code> are reserved. Empty values are treated as absent and removed from the saved data, so consumers must handle missing optional properties.</p>
+      <h2>Verify preview and live JSON</h2>
+      <p>The structured-content delivery endpoint has separate preview and live environments. Publishing a document makes its live JSON available; saving the form alone does not publish it. Ask the developer to validate the endpoint and any required authentication for your site.</p>
+      <ol><li>Test valid records, missing optional values, and invalid required inputs.</li><li>Compare the delivered JSON with the intended contract.</li><li>Preview the consuming block with the record and confirm it handles empty values.</li><li>Publish a test record only after review, then verify the live response independently.</li></ol>
+      <h2>Plan indexing and page metadata</h2>
+      <p>A collection listing needs an indexing strategy as well as a single-record endpoint. Coordinate delivery configuration with the developer. Structured pages can also be crawled; schema fields do not replace page metadata, access control, or sitemap policy. Use the documented metadata mechanisms when pages should not appear in search results, and remember that noindex is not a security control.</p>
+      <p>Sources: <a href="https://www.aem.live/docs/ew/administering/structured-content">Structured content setup and delivery</a> and <a href="https://www.aem.live/docs/ew/administering/schema">Schema for structured content</a>.</p>
+    </div>
+    <div><div class="metadata"><div><div>Title</div><div>Structured content | Administration guide</div></div><div><div>Description</div><div>Map a folder to form-based editing, define supported schemas, and validate structured content delivery.</div></div><div><div>Template</div><div>guide</div></div><div><div>Nav</div><div>/docs/nav</div></div><div><div>Footer</div><div>/docs/footer</div></div><div><div>Guide Nav</div><div>/docs/admin-nav</div></div><div><div>Guide Home</div><div>/docs/administering</div></div><div><div>Guide Title</div><div>Administering</div></div></div></div>
+  </main>
+  <footer></footer>
+</body>

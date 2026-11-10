@@ -23,8 +23,9 @@ async function prepare(directory) {
       /<div>\s*<div class="metadata">([\s\S]*?)<\/div>\s*<\/div>\s*(?=$)/,
       (match, rows) => {
         rows.replace(/<div><div>([^<]+)<\/div><div>([^<]*)<\/div><\/div>/g, (_, key, value) => {
-          if (key.trim().toLowerCase() === 'title') title = value.trim();
-          metadata.push(`<meta name="${key.trim().toLowerCase()}" content="${value.trim()}">`);
+          const name = key.trim().toLowerCase().replace(/\s+/g, '-');
+          if (name === 'title') title = value.trim();
+          metadata.push(`<meta name="${name}" content="${value.trim()}">`);
           return '';
         });
         return '';

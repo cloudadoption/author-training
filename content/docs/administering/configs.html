@@ -1,0 +1,25 @@
+<body>
+  <header></header>
+  <main>
+    <div>
+      <h1>Manage configuration</h1>
+      <p>Start by identifying which system owns the setting. Experience Workspace configuration and Edge Delivery Services configuration serve different purposes.</p>
+      <h2>Choose the right configuration</h2>
+      <ul><li><strong>Experience Workspace:</strong> controls the authoring experience, including libraries, permissions, editor behavior, and optional features.</li><li><strong>Edge Delivery Services:</strong> controls delivery-related behavior, including the content source, preview and publish access, response headers, and CDN setup. Use the current tools at <a href="https://tools.aem.live/">tools.aem.live</a> with your delivery administrator.</li></ul>
+      <p>Changing a workspace setting does not deploy JavaScript or publish content. Likewise, pushing code does not change the workspace's configuration sheets.</p>
+      <h2>Understand organization and site scope</h2>
+      <p>Organization-level configuration provides shared settings. Site-level settings override the organization settings for that site. Before changing an organization setting, identify every site that inherits it and check for site overrides.</p>
+      <ol><li>In the content browser, navigate to the organization root or the specific site root.</li><li>Choose <strong>Org Settings</strong> or <strong>Site Settings</strong>. The direct URL pattern is <code>https://da.live/config#/ORG/</code> or <code>https://da.live/config#/ORG/SITE</code>.</li><li>Verify the organization and site in the URL before editing.</li><li>Open the relevant sheet tab. Rows, columns, and accepted values depend on the feature; use its current reference rather than inventing a key.</li></ol>
+      <h2>Make a controlled change</h2>
+      <ol><li>Confirm you have configuration-write permission. Ask an existing administrator if access is missing.</li><li>Save a private record of the current values and the reason for the change.</li><li>Change one setting or one coherent feature at a time in a practice site.</li><li>Save using the configuration editor, then reopen the affected authoring view.</li><li>Test with an ordinary author's account and verify that unrelated features still work.</li><li>Record the result and retain the prior values for rollback.</li></ol>
+      <p>Configuration may affect authors as soon as it is saved; do not assume there is a separate content-publish gate. Coordinate changes to permissions and inherited settings in particular.</p>
+      <h2>Know where permissions belong</h2>
+      <p>Workspace permission rules are defined in the organization's configuration, including rules that target individual sites. The permissions view is another interface to those same rules, not a separate policy store. Continue with <a href="/docs/administering/permissions">permissions and access</a> before changing configuration access.</p>
+      <h2>Validate and recover</h2>
+      <p>If a change has an unexpected effect, check the site override and organization value before making another edit. Restore the recorded values in the correct scope and retest. Never remove the only working administrator's configuration access as part of an experiment.</p>
+      <p>Sources: <a href="https://www.aem.live/docs/ew/administering/configs">Configs</a> and <a href="https://www.aem.live/docs/ew/administering/permissions">Permissions and security</a>.</p>
+    </div>
+    <div><div class="metadata"><div><div>Title</div><div>Configuration | Administration guide</div></div><div><div>Description</div><div>Choose the right configuration system, understand organization and site scope, and validate workspace setting changes safely.</div></div><div><div>Template</div><div>guide</div></div><div><div>Nav</div><div>/docs/nav</div></div><div><div>Footer</div><div>/docs/footer</div></div><div><div>Guide Nav</div><div>/docs/admin-nav</div></div><div><div>Guide Home</div><div>/docs/administering</div></div><div><div>Guide Title</div><div>Administering</div></div></div></div>
+  </main>
+  <footer></footer>
+</body>

@@ -1,0 +1,28 @@
+<body>
+  <header></header>
+  <main>
+    <div>
+      <h1>Govern publishing</h1>
+      <p>Make the difference between preparation, review, scheduling, and publication explicit. Enabling a menu item is not the same as enforcing an organization-wide approval policy.</p>
+      <h2>Configure the Prepare menu</h2>
+      <p>The ellipsis Prepare menu hosts actions for documents, sheets, and media before preview or publish. Configure it through a <strong>prepare</strong> tab in the organization or site settings.</p>
+      <ul><li><strong>Always-on:</strong> Unpublish is available independently of optional feature configuration.</li><li><strong>Adobe feature flags:</strong> entries such as Schedule Publish and Send to Adobe Target are enabled by their documented title.</li><li><strong>Project plugins:</strong> custom actions need a plugin path and any additional setup their integration requires.</li></ul>
+      <p>The optional ref field can limit visibility during testing. Treat visibility as rollout control, not a substitute for service authorization. Check inheritance and avoid overriding a built-in action accidentally with a same-title plugin.</p>
+      <h2>Understand Preflight's enforcement boundary</h2>
+      <p>Preflight runs Governance Agent checks from the tools panel. Authors can inspect passed, failed, and not-applicable results, view suggestions, fix issues, and rerun checks.</p>
+      <p>The configuration key <code>editor.enforcePreflight</code> set to <code>true</code> requires a passing check for document publishing through the editor. Editing the document requires a new check. The setting is off by default and does <strong>not</strong> affect Preview or bulk publishing.</p>
+      <p>Define which publication paths your governance policy covers. Do not describe this setting as a universal gate on every publish route, and do not assume a pass replaces human review.</p>
+      <h2>Set up Request Publish</h2>
+      <ol><li>Arrange onboarding with your Adobe contact for the organization and site, allowed email domains, and your notification service. Exchange credentials through the approved private channel.</li><li>Configure the author-facing Request Publish plugin and the Publish Requests inbox app. Use Prepare when the workflow must include media; choose the appropriate editor extension for a pages-only workflow.</li><li>Define path-based approver rules in the publish-workflow-config tab, plus optional distribution-list mappings and workflow settings.</li><li>Give authors the required access to the workflow request sheet and the appropriate Edge Delivery author role. Approvers need the required publish role.</li><li>Test submission, notification, diff review, rejection, withdrawal, and successful approval on a practice page.</li></ol>
+      <p>Approval in this workflow publishes the content. Verify the resulting live URL; a notification email alone is not publication evidence. Decide whether CC recipients may approve rather than assuming they can. For assistant-driven requests, also enable the connector and skill described in <a href="/docs/administering/assistant">assistant workflows</a>.</p>
+      <h2>Enable and operate scheduled publication</h2>
+      <ol><li>Add the Schedule Publish entry to the Prepare configuration, optionally limiting its initial audience.</li><li>Open the <a href="https://da.live/apps/scheduler">Scheduler app</a>, load the organization/site, and register the site if required.</li><li>On a practice document or sheet, schedule a publication and verify the intended date, time, and time zone.</li><li>Review the schedule list and agree who will monitor changes before the scheduled time.</li></ol>
+      <p>A schedule publishes content as it exists at the scheduled time, not an immutable copy captured when scheduling. Individual scheduling automatically previews the content. The Scheduler app's Delete control cancels a schedule without a confirmation dialog, so use it carefully.</p>
+      <h2>Validate the whole workflow</h2>
+      <p>Test as an author and approver, verify their separate permissions, and check both preview and live URLs. Include failure and cancellation cases in your rollout plan. Return to the <a href="/docs/enablement/publishing">author checklist</a> for the everyday publication steps.</p>
+      <p>Sources: <a href="https://www.aem.live/docs/ew/administering/prepare-menu">Prepare menu</a>, <a href="https://www.aem.live/docs/ew/administering/preflight">Preflight</a>, <a href="https://www.aem.live/docs/ew/administering/request-publish">Request Publish</a>, and <a href="https://www.aem.live/docs/ew/administering/schedule-publish">Schedule Publish</a>.</p>
+    </div>
+    <div><div class="metadata"><div><div>Title</div><div>Publishing governance | Administration guide</div></div><div><div>Description</div><div>Plan Prepare actions, Preflight enforcement, publish approvals, and scheduled publication with clear operational limits.</div></div><div><div>Template</div><div>guide</div></div><div><div>Nav</div><div>/docs/nav</div></div><div><div>Footer</div><div>/docs/footer</div></div><div><div>Guide Nav</div><div>/docs/admin-nav</div></div><div><div>Guide Home</div><div>/docs/administering</div></div><div><div>Guide Title</div><div>Administering</div></div></div></div>
+  </main>
+  <footer></footer>
+</body>

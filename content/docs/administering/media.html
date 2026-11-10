@@ -1,0 +1,29 @@
+<body>
+  <header></header>
+  <main>
+    <div>
+      <h1>Connect media and services</h1>
+      <p>Choose the right asset source and verify how it is delivered. Media Library, AEM Assets, focal-point authoring, and Adobe Target are separate capabilities with different setup requirements.</p>
+      <h2>Use Media Library for visibility and reuse</h2>
+      <p>Open the <a href="https://da.live/apps/media-library">Media Library app</a> and choose a site or supply its AEM URL. It surfaces site media, references, and metadata from a history-based index.</p>
+      <ol><li>Let the site's initial index load. Older content may need a bulk index arranged with Adobe.</li><li>Filter by media type or search by name and path. Use doc: to inspect a document's references or folder: to narrow a folder.</li><li>Inspect reference and metadata details before reusing or changing an asset.</li><li>If authors need insertion from the editor, add the documented Media Library plugin entry to the site's library configuration.</li></ol>
+      <p>Incomplete results can reflect permissions or indexing, not an unused asset. Check access to the site's media-insights area and the required Edge Delivery role. Do not delete media solely because an incomplete index shows no references.</p>
+      <h2>Plan AEM Assets integration with its owner</h2>
+      <p>The integration requires AEM as a Cloud Service with a publish instance or Dynamic Media, permission to change Cloud Manager settings, and workspace configuration access.</p>
+      <ol><li>Coordinate the Cloud Manager client configuration with the AEM administrator. Saving the required environment variable can trigger a full environment restart, so use a planned change window.</li><li>Configure the site's aem.repositoryId and the appropriate asset origin, delivery, and optional rendition settings from Adobe's current reference.</li><li>Check that the user's selected IMS organization can access the AEM environment.</li><li>Use the asset picker to select a published test asset, then verify both authoring and delivery.</li></ol>
+      <p>Author-only asset delivery is not sufficient. Dynamic Media modes, folder browsing, Smart Crop, and same-domain delivery have additional requirements. Do not substitute production endpoints or change CDN routing without the responsible operations team.</p>
+      <h2>Enable focal points only for compatible blocks</h2>
+      <p>A focal point requires two things: block code that consumes the stored coordinates and a library entry with the focal-point feature enabled. A library flag alone does not make an image crop correctly.</p>
+      <p>Ask the developer to confirm support, add the documented features value to the supported block's library row, and test an off-center subject at narrow and wide viewports. Authors can then set, accept, or clear a focal point in Content mode.</p>
+      <h2>Treat Adobe Target as a separate integration</h2>
+      <p>Send to Adobe Target needs a Target account and a Developer Console API integration. An authorized administrator supplies the protected tenant and credential configuration, then enables the Prepare action.</p>
+      <p>Never preview or publish the credential sheet or include secrets in guide content or Git. Restrict its access using the supported configuration mechanism and your organization's credential-handling policy.</p>
+      <p>The integration sends pages or fragments as undecorated content offers, not sheets or standalone media. Creating an offer is separate from activating an experiment and from the site's Target delivery implementation. Test the resulting offer with your personalization team.</p>
+      <h2>Validate the whole delivery path</h2>
+      <p>Check the selected asset's permissions, availability, metadata, alt text, responsive crop, preview rendering, and live rendering. The presence of a picker or menu item proves only that the UI is available, not that every delivery step is configured.</p>
+      <p>Sources: <a href="https://www.aem.live/docs/ew/administering/media-library">Media Library</a>, <a href="https://www.aem.live/docs/ew/administering/set-up-aem-assets">AEM Assets setup</a>, <a href="https://www.aem.live/docs/ew/administering/focal-point">Focal points</a>, and <a href="https://www.aem.live/docs/ew/administering/send-to-adobe-target">Send to Adobe Target</a>.</p>
+    </div>
+    <div><div class="metadata"><div><div>Title</div><div>Media and integrations | Administration guide</div></div><div><div>Description</div><div>Plan Media Library, AEM Assets, focal-point support, and Adobe Target integrations with delivery and credential safeguards.</div></div><div><div>Template</div><div>guide</div></div><div><div>Nav</div><div>/docs/nav</div></div><div><div>Footer</div><div>/docs/footer</div></div><div><div>Guide Nav</div><div>/docs/admin-nav</div></div><div><div>Guide Home</div><div>/docs/administering</div></div><div><div>Guide Title</div><div>Administering</div></div></div></div>
+  </main>
+  <footer></footer>
+</body>
