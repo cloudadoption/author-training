@@ -72,6 +72,35 @@ test('workspace override reaches both buttons and survives guide navigation', as
     .toHaveAttribute('href', 'https://da.live/#/cloudadoption/author-training');
 });
 
+test('workspace shorthand expands CTA targets and stays short across both guides', async ({ page }, testInfo) => {
+  const errors = [];
+  page.on('pageerror', (error) => errors.push(error.message));
+  const workspace = 'volvogroup/www-partsasist-com';
+  const destination = `https://da.live/#/${workspace}`;
+  await openGuide(page, `/?workspace=${workspace}`);
+  await expect(page.getByRole('link', { name: 'Open workspace', exact: true }))
+    .toHaveAttribute('href', destination);
+  await expect(page.getByRole('link', { name: 'Open your workspace', exact: true }))
+    .toHaveAttribute('href', destination);
+  await page.locator('a.button.primary', { hasText: 'Create your first page' }).click();
+  await expect(page.getByRole('heading', { level: 1 })).toHaveText('Create your first page');
+  expect(new URL(page.url()).searchParams.get('workspace')).toBe(workspace);
+  await page.getByRole('navigation', { name: 'Lessons', exact: true })
+    .getByRole('link', { name: /Next/ }).click();
+  await expect(page).toHaveURL(/\/formatting\?workspace=/);
+  expect(new URL(page.url()).searchParams.get('workspace')).toBe(workspace);
+  await page.locator('header').getByRole('link', { name: 'Administering', exact: true }).click();
+  await expect(page.getByRole('heading', { level: 1 })).toHaveText('Administer Experience Workspace');
+  await page.getByRole('navigation', { name: 'Administering', exact: true })
+    .getByRole('link', { name: 'Permissions and access', exact: true }).click();
+  await expect(page.getByRole('heading', { level: 1 })).toHaveText('Manage permissions and access');
+  expect(new URL(page.url()).searchParams.get('workspace')).toBe(workspace);
+  await expect(page.getByRole('link', { name: 'Open workspace', exact: true }))
+    .toHaveAttribute('href', destination);
+  await page.screenshot({ path: testInfo.outputPath('workspace-shorthand.png'), fullPage: true });
+  expect(errors).toEqual([]);
+});
+
 test('workspace header override does not wait for a slow footer', async ({ page }) => {
   const workspace = 'https://da.live/#/example/training';
   let releaseFooter;
@@ -92,6 +121,7 @@ test('workspace header override does not wait for a slow footer', async ({ page 
 
 [
   '', 'not-a-url', '/another-workspace', '//da.live/#/example/site',
+  'example/../site', 'example/site/extra', 'example/',
   'http://da.live/#/example/site',
   // eslint-disable-next-line no-script-url
   'javascript:alert(1)',

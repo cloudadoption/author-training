@@ -14,21 +14,26 @@ setup, publishing governance, localization/MSM, media integrations, and migratio
 
 ## Customize the workspace destination
 
-Add a URL-encoded `workspace` query parameter to any guide URL to change both
+Add an `org/site` value as the `workspace` query parameter to any guide URL to change both
 the header's **Open workspace** link and the overview's **Open your workspace**
 button:
 
 ```text
-https://main--author-training--cloudadoption.aem.live/?workspace=https%3A%2F%2Fda.live%2F%23%2Facme%2Fmy-site
+https://main--author-training--cloudadoption.aem.live/?workspace=acme/my-site
 ```
 
-This example opens `https://da.live/#/acme/my-site`. Encode the whole destination
-(for example, with `encodeURIComponent`) so its `#`, `?`, and `&` remain part of
-the workspace URL. Use only a trusted absolute HTTPS URL without embedded
-credentials. Empty or invalid values leave the authored destination unchanged.
+This example opens `https://da.live/#/acme/my-site`. The shorthand accepts
+exactly two non-empty segments containing letters, digits, or hyphens.
+
+A trusted absolute HTTPS URL without embedded credentials is also supported.
+URL-encode the whole destination (for example, with `encodeURIComponent`) so
+its `#`, `?`, and `&` remain part of the workspace URL. Empty or invalid values
+leave the authored destination unchanged.
 
 The parameter stays on internal guide links, including shared navigation and
 previous/next lessons, but is not added to external documentation links.
+Shorthand values stay in `org/site` form rather than expanding into a full URL
+in the parameter; the slash may be URL-encoded as `%2F` during navigation.
 Nothing is saved in browser storage: remove the parameter to return to the
 default workspace. This changes link destinations only; it does not change the
 guide's content, configure a workspace, or grant access.

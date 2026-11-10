@@ -5,9 +5,11 @@ function normalizePath(path) {
 }
 
 export function customizeWorkspaceLinks(container) {
+  const value = new URLSearchParams(window.location.search).get('workspace');
   let workspace;
   try {
-    workspace = new URL(new URLSearchParams(window.location.search).get('workspace'));
+    workspace = new URL(/^[a-z0-9-]+\/[a-z0-9-]+$/i.test(value)
+      ? `https://da.live/#/${value}` : value);
   } catch {
     return;
   }
@@ -21,7 +23,7 @@ export function customizeWorkspaceLinks(container) {
       const path = normalizePath(link.pathname);
       if (path !== '/' && !/^\/docs\/(?:enablement|administering)(?:\/|$)/.test(path)) return;
       const url = new URL(link.href);
-      url.searchParams.set('workspace', workspace.href);
+      url.searchParams.set('workspace', value);
       link.href = `${url.pathname}${url.search}${url.hash}`;
     }
   });
