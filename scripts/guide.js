@@ -5,6 +5,15 @@ function normalizePath(path) {
 }
 
 export function customizeWorkspaceLinks(container) {
+  const defaultWorkspace = 'https://da.live/#/cloudadoption/author-training';
+  const links = container.querySelectorAll('a[href]');
+  links.forEach((link) => {
+    if (link.href === defaultWorkspace) {
+      link.target = '_blank';
+      link.relList.add('noopener', 'noreferrer');
+    }
+  });
+
   const value = new URLSearchParams(window.location.search).get('workspace');
   let workspace;
   try {
@@ -15,9 +24,9 @@ export function customizeWorkspaceLinks(container) {
   }
   if (workspace.protocol !== 'https:' || workspace.username || workspace.password) return;
 
-  container.querySelectorAll('a[href]').forEach((link) => {
+  links.forEach((link) => {
     if (link.href === workspace.href) return;
-    if (link.href === 'https://da.live/#/cloudadoption/author-training') {
+    if (link.href === defaultWorkspace) {
       link.href = workspace.href;
     } else if (link.origin === window.location.origin && !link.getAttribute('href').startsWith('#')) {
       const path = normalizePath(link.pathname);

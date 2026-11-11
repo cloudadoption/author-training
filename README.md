@@ -30,6 +30,9 @@ URL-encode the whole destination (for example, with `encodeURIComponent`) so
 its `#`, `?`, and `&` remain part of the workspace URL. Empty or invalid values
 leave the authored destination unchanged.
 
+Both workspace buttons open a new tab, leaving the guide open. This also applies
+to the default destination when no valid override is provided.
+
 The parameter stays on internal guide links, including shared navigation and
 previous/next lessons, but is not added to external documentation links.
 Shorthand values stay in `org/site` form rather than expanding into a full URL

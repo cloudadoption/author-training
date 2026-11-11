@@ -34,6 +34,41 @@ test('topics filter across titles, descriptions and categories, with recovery', 
   expect(errors).toEqual([]);
 });
 
+[
+  ['default', '', 'https://da.live/#/cloudadoption/author-training'],
+  ['shorthand', 'volvogroup/www-partsasist-com', 'https://da.live/#/volvogroup/www-partsasist-com'],
+  ['HTTPS URL', 'https://da.live/?view=recent&sort=name#/example/training', 'https://da.live/?view=recent&sort=name#/example/training'],
+  ['invalid override', 'not-a-url', 'https://da.live/#/cloudadoption/author-training'],
+].forEach(([name, workspace, destination]) => {
+  test(`workspace buttons open isolated new tabs with ${name}`, async ({ page, context }) => {
+    await context.route('https://da.live/**', (route) => route.fulfill({
+      contentType: 'text/html',
+      body: '<!doctype html><title>Workspace destination</title>',
+    }));
+    await openGuide(page, workspace ? `/?${new URLSearchParams({ workspace })}` : '/');
+    const guideURL = page.url();
+    const checkWorkspaceTab = async (label) => {
+      const link = page.getByRole('link', { name: label, exact: true });
+      await expect(link).toHaveAttribute('target', '_blank');
+      await expect(link).toHaveAttribute('rel', /\bnoopener\b/);
+      await expect(link).toHaveAttribute('rel', /\bnoreferrer\b/);
+      const [popup] = await Promise.all([page.waitForEvent('popup'), link.click()]);
+      await popup.waitForLoadState('domcontentloaded');
+      await expect(popup).toHaveURL(destination);
+      expect(await popup.evaluate(() => window.opener)).toBeNull();
+      await expect(page).toHaveURL(guideURL);
+      await popup.close();
+    };
+    await checkWorkspaceTab('Open workspace');
+    await checkWorkspaceTab('Open your workspace');
+    const lesson = page.locator('a.button.primary', { hasText: 'Create your first page' });
+    await expect(lesson).not.toHaveAttribute('target', '_blank');
+    await lesson.click();
+    await expect(page.getByRole('heading', { level: 1 })).toHaveText('Create your first page');
+    expect(context.pages()).toHaveLength(1);
+  });
+});
+
 test('workspace override reaches both buttons and survives guide navigation', async ({ page }) => {
   const workspace = 'https://da.live/?view=recent&sort=name#/example/training';
   const query = new URLSearchParams({ workspace }).toString();
